@@ -1,0 +1,7 @@
+Flask>=3.0,<4
+# Optional OCR (install Tesseract separately on Windows; see README)
+pytesseract>=0.3.10
+Pillow>=10.0
+pdf2image>=1.17
+# Optional Gemini Vision extraction (requires GEMINI_API_KEY)
+google-genai>=1.0
