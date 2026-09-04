@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Scan bill · MediLedger{% endblock %}{% block content %}
+<section class="scan-hero card"><div class="scan-icon">📷</div><p class="eyebrow">QUICK CAPTURE</p><h1>Scan a purchase bill</h1>
+<p class="muted">Upload a clear photo or PDF. {% if gemini_enabled %}Gemini Vision will extract fields first, then local OCR is used if needed.{% else %}Local OCR extracts likely fields, then you verify everything before saving.{% endif %}</p>
+<form method="post" enctype="multipart/form-data" class="form"><label>Bill image / PDF
+<input type="file" name="bill_file" accept="image/*,.pdf,.jpe" capture="environment" required></label>
+<button class="btn" type="submit">Scan and review →</button><small class="muted">JPG, JPEG, JPE, PNG, WEBP or PDF up to 10 MB.</small></form></section>
+<div class="grid two"><section class="card"><h2>{% if gemini_enabled %}Gemini Vision enabled{% else %}OCR is optional{% endif %}</h2><p>{% if gemini_enabled %}Using {{ gemini_model }}. Your API key is never shown in the app.{% else %}Set GEMINI_API_KEY to enable optional Gemini Vision extraction. Otherwise, if Tesseract is not installed, the file is retained and manual entry remains available.{% endif %}</p></section>
+<section class="card"><h2>Always verify</h2><p>OCR suggestions can be wrong. Check supplier, invoice, products, GST and total before saving.</p></section></div>{% endblock %}
