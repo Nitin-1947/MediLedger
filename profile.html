@@ -1,6 +1,0 @@
-{% extends "base.html" %}{% block title %}Profile · MediLedger{% endblock %}{% block content %}
-<div class="page-head"><div><p class="eyebrow">ACCOUNT SETTINGS</p><h1>My profile</h1><p class="muted">Keep your account and shop information up to date.</p></div></div>
-<div class="grid two">
-<section class="card"><h2>Account information</h2><div class="row"><span>Email</span><b>{{ user.email }}</b></div><div class="row"><span>Member since</span><b>{{ user.created_at[:10] }}</b></div><p class="muted">Your email identifies your account and cannot be changed here.</p></section>
-<form method="post" class="card form"><h2>Personal & shop details</h2><label>Full name<input name="name" value="{{ user.name }}" required></label><label>Phone number<input name="phone" type="tel" value="{{ user.phone or '' }}" placeholder="+91 98765 43210"></label><label>Shop name<input name="shop_name" value="{{ user.shop_name or '' }}" placeholder="Your pharmacy or shop"></label><label>Shop address<textarea name="shop_address" rows="3" placeholder="Shop address">{{ user.shop_address or '' }}</textarea></label><label>Shop GSTIN<input name="shop_gstin" value="{{ user.shop_gstin or '' }}" maxlength="15" placeholder="Optional GSTIN"></label><button class="btn" type="submit">Save profile</button></form>
-</div>{% endblock %}
