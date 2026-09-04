@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, phone TEXT DEFAULT '', shop_name TEXT DEFAULT '', shop_address TEXT DEFAULT '', shop_gstin TEXT DEFAULT '', created_at TEXT DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS bills (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE, supplier TEXT NOT NULL, invoice_number TEXT NOT NULL, invoice_date TEXT NOT NULL, gst REAL DEFAULT 0, total REAL NOT NULL, notes TEXT DEFAULT '', file_name TEXT, created_at TEXT DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS bill_items (id INTEGER PRIMARY KEY AUTOINCREMENT, bill_id INTEGER NOT NULL REFERENCES bills(id) ON DELETE CASCADE, product_name TEXT NOT NULL, category TEXT NOT NULL CHECK(category IN ('medicine','cosmetic','other')), quantity REAL NOT NULL, unit_price REAL NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_bills_user_date ON bills(user_id,invoice_date);
+CREATE INDEX IF NOT EXISTS idx_items_bill ON bill_items(bill_id);

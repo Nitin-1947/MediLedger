@@ -1,0 +1,1 @@
+document.addEventListener("click",e=>{if(e.target.id==="add-item"){const row=document.querySelector(".item-row").cloneNode(true);row.querySelectorAll("input").forEach(x=>x.value="");document.querySelector("#items").append(row)}if(e.target.classList.contains("remove")){const rows=document.querySelectorAll(".item-row");if(rows.length>1)e.target.closest(".item-row").remove()}});
